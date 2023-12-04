@@ -19,7 +19,26 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.19</version>
 		</dependency>
 
 		<dependency>
@@ -31,6 +50,45 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<!-- https://openapi-generator.tech/docs/generators/spring -->
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/specification/demo.yaml</inputSpec>
+							<skipValidateSpec>false</skipValidateSpec>
+							<generatorName>spring</generatorName>
+							<templateDirectory>${project.basedir}/src/main/resources/openAPI/openapi-generator-maven-plugin/templates/JavaSpring</templateDirectory>
+							<output>${project.build.directory}/generated-sources/openapi</output>
+							<invokerPackage>com.example.demo.generated</invokerPackage>
+							<apiPackage>com.example.demo.generated.api</apiPackage>
+							<modelPackage>com.example.demo.generated.model</modelPackage>
+							<globalProperties>
+								<!--                                <debugModels>Uncomment to debug models</debugModels>-->
+							</globalProperties>
+							<configOptions>
+								<allowUnicodeIdentifiers>true</allowUnicodeIdentifiers>
+								<sourceFolder>src/main/java/generated</sourceFolder>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<java8>true</java8>
+								<dateLibrary>java8</dateLibrary>
+								<library>spring-boot</library>
+								<delegatePattern>false</delegatePattern>
+								<useJakartaEe>true</useJakartaEe>
+							</configOptions>
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
