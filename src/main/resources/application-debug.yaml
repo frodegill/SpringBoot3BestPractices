@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: DEBUG
+management:
+  endpoint:
+    mappings:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,mappings

@@ -1,3 +1,15 @@
 logging:
   level:
     root: INFO
+springdoc:
+  swagger-ui:
+    operations-sorter: alpha
+  show-actuator: true
+management:
+  endpoint:
+    mappings:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health,info
