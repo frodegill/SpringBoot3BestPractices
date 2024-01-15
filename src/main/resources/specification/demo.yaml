@@ -1,23 +1,23 @@
-openapi: 3.0.2
+openapi: 3.1.0
 info:
-  title: Spring Boot 3 Best Practices demo application
-  description: This is just a demo application for showing Spring Boot 3 best practices. It will provide a persisting REST API
-  version: '1.0.0'
+  title: "Spring Boot 3 Best Practices demo application"
+  description: "This is just a demo application for showing Spring Boot 3 best practices. It will provide a persisting REST API"
+  version: "1.0.0"
   contact:
-    name: Frode Roxrud Gill
-    url: 'https://gillhub.org/'
-    email: frodegill@gmail.com
+    name: "Frode Roxrud Gill"
+    url: "https://gillhub.org/"
+    email: "frodegill@gmail.com"
   license:
-    name: CC0 1.0 Universal
-    url: 'https://creativecommons.org/publicdomain/zero/1.0/'
+    name: "CC0 1.0 Universal"
+    url: "https://creativecommons.org/publicdomain/zero/1.0/"
 paths:
   /v1.0/things/:
     get:
-      summary: Query all things
-      description: Returns a list of all things
-      operationId: getThings
+      summary: "Query all things"
+      description: "Returns a list of all things"
+      operationId: "getThings"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -31,42 +31,42 @@ paths:
                 items:
                   $ref: "#/components/schemas/Thing"
     post:
-      summary: Create a given thing
-      operationId: createThing
+      summary: "Create a given thing"
+      operationId: "createThing"
       requestBody:
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/Thing"
       responses:
-        '201':
+        "201":
           description: CREATED
   /v1.0/things/{id}:
     get:
-      summary: Query for a given thing
-      description: Returns the thing
-      operationId: getThing
+      summary: "Query for a given thing"
+      description: "Returns the thing"
+      operationId: "getThing"
       parameters:
         - name: id
           in: path
-          description: Id for thing
+          description: "Id for thing"
           required: true
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Thing"
     put:
-      summary: Update a given thing
-      operationId: updateThing
+      summary: "Update a given thing"
+      operationId: "updateThing"
       parameters:
         - name: id
           in: path
-          description: Id for thing
+          description: "Id for thing"
           required: true
           schema:
             type: string
@@ -76,29 +76,29 @@ paths:
             schema:
               $ref: "#/components/schemas/Thing"
       responses:
-        '204':
+        "204":
           description: UPDATED
     delete:
-      summary: Delete a given thing
-      operationId: deleteThing
+      summary: "Delete a given thing"
+      operationId: "deleteThing"
       parameters:
         - name: id
           in: path
-          description: Id for thing
+          description: "Id for thing"
           required: true
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: DELETED
 components:
   schemas:
     Thing:
       type: object
-      description: A thing
+      description: "A thing"
       properties:
         id:
           type: integer
-          description: system-generated ID
+          description: "system-generated ID"
         name:
           type: string
